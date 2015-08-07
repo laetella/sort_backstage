@@ -1,8 +1,18 @@
 var MyDate = require('./date');
+var CartItem = require('./cart-item');
 
 function Printer () {
   this.string = "";
 }
+
+// Printer.setItems = function (items) {
+//   CartItem.setItems(items);
+// }
+//
+// Printer.setPromotions = function (promotions) {
+//   CartItem.setPromotions(promotions);
+// }
+//
 Printer.prototype.printString = function (thisCart) {
   this.string += "***<没钱赚商店>收据***\n打印时间："
               + new MyDate().getCurrentDate()

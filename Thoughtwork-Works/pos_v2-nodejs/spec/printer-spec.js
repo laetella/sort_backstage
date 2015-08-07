@@ -1,12 +1,20 @@
 var Printer = require('../main/model/printer');
+var CartItem = require('../main/model/cart-item');
 var Cart = require('../main/model/cart');
 var MyDate = require('../main/model/date');
+var loadAllItems = require('./fixtures/fixtures');
+
 describe('v2-scanner-test', function() {
   var theCart;
+  var allItems = loadAllItems.loadAllItems();
+  var allPromotions = loadAllItems.loadPromotions();
+
   beforeEach(function() {
     tag1 = {barcode:'ITEM000001', count:1};
     tag2 = {barcode: 'ITEM000003', count:1};
     tag3 = {barcode: 'ITEM000005', count:1};
+    CartItem.setItems(allItems);
+    CartItem.setPromotions(allPromotions);
     callCart = new Cart();
     for(var item = 0; item < 5; item ++) {
       resultArray = callCart.addItem(tag1);

@@ -1,12 +1,18 @@
 var CartItem = require('../main/model/cart-item');
+var loadAllItems = require('./fixtures/fixtures');
+// var loadPromotions = require('./fixtures');
 
 describe('v2-cart-item-test', function() {
   var tag1,tag2,callItem;
+  var allItems = loadAllItems.loadAllItems();
+  var allPromotions = loadAllItems.loadPromotions();
+  CartItem.setItems(allItems);
+  CartItem.setPromotions(allPromotions);
 
   beforeEach(function() {
     tag1 = {barcode:'ITEM000000', count:1};
     tag2 = {barcode:'ITEM000003', count:2};
-    callItem = new CartItem.CartItem(tag1);
+    callItem = new CartItem(tag1);
   });
 
   it('should get correct item', function() {

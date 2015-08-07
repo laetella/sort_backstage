@@ -4,6 +4,14 @@ function Cart() {
   this.resultArray = [];
 }
 
+// Cart.setItems = function (items) {
+//   CartItem.setItems(items);
+// }
+//
+// Cart.setPromotions = function (promotions) {
+//   CartItem.setPromotions(promotions);
+// }
+
 Cart.prototype.addItem = function(tag) {
   var sign = false;
   for(var item = 0; item < this.resultArray.length; item++) {
@@ -14,8 +22,8 @@ Cart.prototype.addItem = function(tag) {
     }
   }
   if (sign === false) {
-    // var newCartItem = new CartItem(tag);
-    var newCartItem = new CartItem.CartItem(tag);
+    var newCartItem = new CartItem(tag);
+    // var newCartItem = new CartItem.CartItem(tag);
     this.resultArray.push(newCartItem);
   }
   return this.resultArray;

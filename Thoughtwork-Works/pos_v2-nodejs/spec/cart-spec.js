@@ -1,26 +1,24 @@
 var Cart = require('../main/model/cart');
 var CartItem = require('../main/model/cart-item');
+var loadAllItems = require('./fixtures/fixtures');
 
 describe('v2-cart-test', function() {
-  var tag1,tag2,tag3,callItem,resultArray;
   var callCart;
+  var allItems = loadAllItems.loadAllItems();
+  var allPromotions = loadAllItems.loadPromotions();
 
   beforeEach(function() {
-    tag1 = {barcode:'ITEM000001', count:1};
-    tag2 = {barcode: 'ITEM000003', count:1};
-    tag3 = {barcode: 'ITEM000005', count:1};
     callCart = new Cart();
+    CartItem.setItems(allItems);
+    CartItem.setPromotions(allPromotions);
   });
 
   it('should add Item correctly', function() {
     var tag0 = {barcode:'ITEM000000', count:1};
     var callAddItem = callCart.addItem(tag0);
-    var expectArray = [ { barcode: 'ITEM000000', count: 1, _item: { barcode: 'ITEM000000', name: '可口可乐', unit: '瓶', price: 3 } } ]
+    var expectArray = [ { barcode: 'ITEM000000', count: 1, _item: { barcode: 'ITEM000000', name: '可口可乐', unit: '瓶', price: 3 } } ];
     expect(callAddItem[0].barcode).toEqual(expectArray[0].barcode);
     expect(callAddItem[0].count).toEqual(expectArray[0].count);
-    expect(callAddItem[0]._item.name).toEqual(expectArray[0]._item.name);
-    expect(callAddItem[0]._item.unit).toEqual(expectArray[0]._item.unit);
-    expect(callAddItem[0]._item.price).toEqual(expectArray[0]._item.price);
   });
 
 });
